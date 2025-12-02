@@ -1,0 +1,211 @@
+📘 DATA DICTIONARY & SCIENTIFIC INTERPRETATION
+Multimodal Longitudinal Mental-Health Dataset (Synthetic)
+
+This dataset simulates a six-timepoint longitudinal mental-health study commonly seen in computational psychiatry, digital phenotyping, and clinical outcomes research.
+It contains three coordinated data modalities:
+
+Clinical outcome ratings
+
+Passive sensor behavior data
+
+EMA-style natural language clinical notes
+
+These modalities mirror real-world psychiatric research workflows used within
+UChicago BSD Psychiatry, Lyons Lab Precision Analytics, and digital phenotyping studies.
+
+1️⃣ clinical_longitudinal_data.csv
+
+This is the primary clinical dataset, containing demographic information, treatment assignment, and outcome severity over time.
+
+Column	Type	Description
+participant_id	integer	Unique identifier for each participant (1–120). Primary key matching all modalities.
+timepoint	integer	Longitudinal assessment index (1–6). Represents sequential visits (weekly, biweekly, or monthly).
+treatment_group	integer (0/1)	Experimental condition: 0 = control, 1 = high-intensity therapy. Treatment group drives differences in improvement trajectory.
+symptom_score	float	Synthetic continuous psychiatric severity score. Baseline ≈ N(22, 6). Decreases over time, with treatment × time interaction and random noise.
+age	float	Participant age (N(35, 10)). Included as demographic covariate.
+gender	categorical	Gender identity: Male, Female, Other. Encoded via dummy coding: C(gender) in mixed models.
+✔ Summary
+
+This dataset provides the core variables for longitudinal mixed-effects modeling, treatment-effect estimation, and demographic adjustment.
+
+2️⃣ sensor_longitudinal_data.csv
+
+Simulated passive “digital phenotyping” signals collected via smartphone or wearable devices.
+
+Column	Type	Description
+participant_id	integer	Matches clinical data.
+timepoint	integer	Matches clinical timepoints.
+avg_steps	float	Average daily step count. Lower steps correspond to higher symptom burden. Bound at ≥ 500.
+sleep_hours	float	Estimated nightly sleep duration (3.5–10 hrs). Symptom severity reduces sleep stability.
+phone_usage_minutes	float	Estimated daily smartphone use (30–600 minutes). Higher symptoms → more phone time.
+✔ Interpretation of Sensor Variables
+
+avg_steps → psychomotor activity
+Reduced movement is a known marker of depression/anxiety.
+
+sleep_hours → circadian stability
+Sleep disruption correlates strongly with mood disorders.
+
+phone_usage_minutes → avoidance/rumination
+Digital phenotyping studies show increased screen time during distress.
+
+3️⃣ text_notes_longitudinal_data.csv
+
+EMA-style, qualitative clinical notes describing each participant’s subjective mood and engagement.
+
+Column	Type	Description
+participant_id	integer	Matches clinical + sensor data.
+timepoint	integer	Longitudinal visit index.
+note_text	string	Natural-language summary generated based on symptom severity + treatment condition. Reflects mood, functioning, and therapy engagement.
+✔ Example Note
+
+“At visit 3, the participant reports struggling with mood but noticing some better days, while engaging regularly with therapy exercises. Sleep and energy fluctuate.”
+
+✔ Text Usage
+
+NLP analysis
+
+Sentiment trends
+
+LLM interpretation
+
+Qualitative support for sensor & clinical trajectories
+
+📊 Multimodal Relationships Designed Into the Dataset
+
+This dataset encodes scientifically grounded relationships among modalities.
+
+🔷 Clinical → Sensor Patterns
+
+Higher psychiatric symptom severity leads to:
+
+Symptom Effect	Sensor Behavior
+↑ symptoms	↓ steps (psychomotor slowing, anhedonia)
+↑ symptoms	↓ sleep stability (rumination, circadian disruption)
+↑ symptoms	↑ phone use (avoidance, late-night scrolling, stress)
+
+These are validated in digital phenotyping research.
+
+🔷 Clinical → Text Patterns
+
+Symptom-based mapping:
+
+Symptom Score	Text Description
+> 22	“very overwhelmed and anxious”
+18–22	“struggling with mood”
+14–18	“somewhat better and hopeful”
+< 14	“much more stable and engaged”
+
+Treatment-based phrasing:
+
+Treatment group (1): “engaging regularly with therapy and exercises”
+
+Control group (0): “attending check-ins but not in high-intensity therapy”
+
+🧠 Scientific Rationale: Why Symptoms Affect Steps, Sleep, Phone Use
+
+The dataset encodes known behavioral associations:
+
+1. Symptoms → ↓ Steps
+
+Depression/anxiety cause:
+
+Low energy
+
+Social withdrawal
+
+Psychomotor slowing
+
+Reduced physical activity
+
+Steps are one of the strongest digital biomarkers of worsening mood.
+
+2. Symptoms → ↓ Sleep Stability
+
+Symptoms disrupt sleep through:
+
+Hyperarousal
+
+Rumination
+
+Disturbed circadian rhythms
+
+Insomnia
+
+Signs in the data:
+
+Lower sleep hours
+
+Higher variability
+
+More nighttime awakenings
+
+3. Symptoms → ↑ Phone Use
+
+Distress increases screen usage due to:
+
+Avoidance
+
+Rumination
+
+Social media coping
+
+Late-night use during insomnia
+
+This correlation is widely documented in digital phenotyping literature.
+
+🎯 What Researchers Can Conclude from This Dataset
+
+This multimodal dataset supports:
+
+✔ Longitudinal Mixed-Effects Modeling
+
+Analyze:
+
+treatment × time interactions
+
+subject-level random effects
+
+covariate impacts
+
+behavioral correlates of symptom change
+
+✔ Digital Phenotyping Insights
+
+Establish whether:
+
+lower activity predicts worsening mood
+
+sleep irregularity precedes symptom spikes
+
+phone use rises before clinical deterioration
+
+✔ Multimodal Fusion
+
+Combine:
+
+clinical scores
+
+passive sensor data
+
+qualitative notes
+
+to infer:
+
+patient trajectories
+
+treatment responsiveness
+
+precision analytics predictions
+
+✔ NLP-augmented Clinical Analytics
+
+EMA notes can be used for:
+
+topic extraction
+
+sentiment scoring
+
+LLM-generated summaries
+
+explaining model outputs
