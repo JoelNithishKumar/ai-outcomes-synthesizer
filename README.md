@@ -2,7 +2,7 @@
 
 A multimodal **Precision Analytics** engine for computational psychiatry research. This project generates realistic synthetic longitudinal mental-health datasets (clinical, sensor, and EMA-style text), performs mixed-effects modeling, creates plots, and uses LLMs to generate manuscript-ready research summaries.
 
-This project mirrors workflows used in **UChicago BSD Psychiatry // Lyons Lab Precision Analytics**, focusing on:
+This project mirrors workflows used in and focusing on:
 - Longitudinal modeling
 - Multimodal data fusion
 - Digital phenotyping
