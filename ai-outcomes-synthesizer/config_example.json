@@ -1,0 +1,19 @@
+{
+  "id_col": "participant_id",
+  "time_col": "timepoint",
+  "outcome_cols": ["symptom_score"],
+  "group_col": "treatment_group",
+  "covariates": ["age", "gender", "avg_steps", "sleep_hours", "phone_usage_minutes"],
+  "modalities": {
+    "sensor": {
+      "file": "data/sensor_longitudinal_data.csv",
+      "merge_on": ["participant_id", "timepoint"]
+    },
+    "text": {
+      "file": "data/text_notes_longitudinal_data.csv",
+      "id_col": "participant_id",
+      "time_col": "timepoint",
+      "text_col": "note_text"
+    }
+  }
+}
