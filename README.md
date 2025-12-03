@@ -28,7 +28,7 @@ This project mirrors workflows used in and focusing on:
 Clone the repository:
 ```powershell
 cd C:\dev
-git clone https://github.com/<your-username>/ai-outcomes-synthesizer.git
+git clone https://github.com/<JoelNithishKumar/ai-outcomes-synthesizer.git
 cd ai-outcomes-synthesizer
 ```
 
