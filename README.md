@@ -58,6 +58,7 @@ data/
 ├── sensor_longitudinal_data.csv
 └── text_notes_longitudinal_data.csv
 ```
+<img width="1177" height="1309" alt="ai-ouctomes-synthesizer ERD" src="https://github.com/user-attachments/assets/d09c8e35-75e0-48c4-aa09-0c71abad398d" />
 
 ---
 
